@@ -1086,3 +1086,33 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
   .visit-hero-actions { gap: 10px; }
   .page-hero-visit .page-hero-content { padding-top: 48px; padding-bottom: 48px; }
 }
+
+/* A consistent, locally rendered icon system */
+.icon { display: inline-block; flex: none; width: 18px; height: 18px; vertical-align: middle; }
+.button .icon, .navigation .nav-visit .icon { width: 18px; height: 18px; }
+.nav-visit .icon { margin-left: 9px; }
+.step-icon .icon { width: 21px; height: 21px; }
+.step-arrow { width: 20px; height: 20px; }
+.card-symbol .icon { width: 27px; height: 27px; }
+.note-icon .icon { width: 19px; height: 19px; }
+.map-label { display: flex; align-items: center; gap: 8px; }
+.map-label .icon { width: 16px; height: 16px; color: var(--clay); }
+.contact-arrow { width: 19px; height: 19px; }
+.back-link .icon { margin-right: 6px; }
+.footer-bottom a, .footer-socials a { display: inline-flex; align-items: center; gap: 8px; }
+.footer-socials .social-icon { width: 19px; height: 19px; color: #ff9a70; }
+.footer-socials a > .icon:last-child { width: 14px; height: 14px; }
+.footer-socials a span { color: inherit; }
+.visit-contact-details strong .icon { width: 16px; height: 16px; }
+.gallery-viewer button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.gallery-viewer button .icon { width: 17px; height: 17px; }
+.faq-list summary .icon { width: 22px; height: 22px; color: #ff9a70; transition: transform .2s ease; }
+.faq-list details[open] summary .icon { transform: rotate(45deg); }
+.menu-icon { position: relative; display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; }
+.menu-icon .icon { width: 24px; height: 24px; }
+.menu-icon .icon-close, .menu-toggle[aria-expanded="true"] .icon-menu { display: none; }
+.menu-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-list summary .icon { transition: none; }
+}
