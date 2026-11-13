@@ -9,7 +9,7 @@
   --lime: #f0e2d2;
   --clay: #8c4056;
   --white: #fffaf3;
-  --serif: "Playfair Display", Georgia, serif;
+  --serif: var(--sans);
   --sans: "DM Sans", Arial, sans-serif;
 }
 
@@ -117,7 +117,7 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
 }
 
-.eyebrow > span { display: inline-block; width: 22px; height: 1px; background: currentColor; }
+.eyebrow > span { display: none; }
 .eyebrow-light { color: var(--lime); }
 
 h1, h2, h3, p { margin-top: 0; }
@@ -575,7 +575,7 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
   --lime: #f0e2d2;
   --clay: #8c4056;
   --white: #fffaf3;
-  --serif: "Playfair Display", Georgia, serif;
+  --serif: var(--sans);
 }
 
 html { scroll-padding-top: 78px; }
