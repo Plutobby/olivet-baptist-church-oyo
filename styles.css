@@ -893,7 +893,9 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 .discover-card h3 { margin: 10px 0 20px; font-size: clamp(22px, 2.2vw, 29px); line-height: 1.15; }
 .discover-card .button { min-height: 44px; font-size: 12px; }
 
-.ministries-section { background: #f3f1ec; }
+.ministries-section { background: var(--lime); color: #38212a; }
+.ministries-section .eyebrow { color: var(--green); }
+.ministries-section .ministries-heading h2 em { color: var(--green); }
 .ministry-grid { gap: 16px; }
 .ministry-card, .ministry-card + .ministry-card { min-height: 235px; border-radius: 14px; }
 .ministry-card p { font-size: 13px; line-height: 1.6; }
