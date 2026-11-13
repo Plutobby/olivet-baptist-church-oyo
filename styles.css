@@ -711,7 +711,7 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 .story-card-image img { aspect-ratio: 1.72 / 1; }
 .story-card-image > span { border-radius: 999px; background: var(--lime); }
 .story-card h3 a { color: var(--ink); }
-.story-date { color: #777a6e; }
+.story-date { color: #6b6e63; }
 .giving-card { border-radius: 12px; background: var(--white); }
 .giving-card figcaption { color: var(--ink); }
 .giving-note, .viewer-fallback { color: #58635a; }
@@ -906,6 +906,7 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 .about-copy .button { margin-top: 5px; }
 
 .discover { padding-top: 96px; padding-bottom: 105px; background: var(--green-deep); color: white; }
+.discover .eyebrow { color: var(--lime); }
 .discover-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .discover-card {
   position: relative;
