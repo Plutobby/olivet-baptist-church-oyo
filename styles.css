@@ -310,6 +310,11 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
 .story-photo img { position: relative; width: 100%; aspect-ratio: 4 / 4.7; object-fit: cover; }
 .story-photo-caption { position: absolute; right: 0; bottom: 0; padding: 10px 15px; background: var(--clay); color: white; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 
+.vision-mission-section { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; padding-top: 70px; padding-bottom: 75px; background: var(--green-deep); color: var(--white); }
+.vision-mission-card { padding-left: 24px; border-left: 2px solid var(--clay); }
+.vision-mission-card .eyebrow { color: var(--lime); }
+.vision-mission-card > p:last-child { max-width: 520px; margin: 0; font-family: var(--serif); font-size: clamp(20px, 2.4vw, 29px); line-height: 1.5; }
+
 .anthem-section { padding-top: 85px; padding-bottom: 90px; background: var(--lime); color: var(--green-deep); }
 .anthem-inner { max-width: 860px; margin: 0 auto; text-align: center; }
 .anthem-section .eyebrow { justify-content: center; color: var(--green); }
@@ -524,6 +529,7 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
   .story-section, .history-section, .visit-welcome, .other-gatherings, .visit-contact-inner { grid-template-columns: 1fr; gap: 35px; }
   .story-section { padding-top: 72px; padding-bottom: 78px; }
   .story-photo { width: min(88%, 410px); justify-self: center; }
+  .vision-mission-section { grid-template-columns: 1fr; gap: 35px; padding-top: 58px; padding-bottom: 62px; }
   .belief-inner { padding-top: 65px; padding-bottom: 68px; }
   .story-copy h2, .belief-inner h2, .history-section h2, .ministry-cta h2, .section-heading-row h2, .media-page-intro h2, .giving-intro h2, .treasure-intro h2, .visit-welcome h2, .other-gatherings h2, .visit-contact-inner h2 { font-size: 43px; }
   .history-section { gap: 25px; padding-top: 72px; padding-bottom: 72px; }
