@@ -1034,9 +1034,10 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 /* Practical pathways and readable supporting text */
 .brand-name small { font-size: 10px; letter-spacing: .08em; }
 .menu-toggle { min-height: 44px; }
-.ministry-inquiry { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 24px; }
+.ministry-inquiry { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(56,33,42,.2); }
 .ministry-inquiry .ministry-footnote { margin: 0; color: #444; font-size: 15px; }
-.ministry-inquiry .button { margin-left: auto; }
+.ministry-inquiry .button { min-height: 52px; margin-left: auto; background: var(--green); color: var(--white); }
+.ministry-inquiry .button:hover { background: var(--green-deep); }
 .visit-hero-actions, .publication-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; }
 .page-hero-content .visit-hero-actions .button, .publication-actions .button { margin-top: 0; }
 .page-hero-visit { min-height: 370px; }
@@ -1093,7 +1094,8 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
   .welcome-copy p, .about-copy > p:not(.eyebrow), .gather-description,
   .community-feature-content > p:not(.eyebrow) { font-size: 15px; }
   .hero-actions .button { font-size: 13px; }
-  .ministry-inquiry .button { margin-left: 0; }
+  .ministry-inquiry { align-items: stretch; flex-direction: column; }
+  .ministry-inquiry .button { width: 100%; margin-left: 0; }
   .giving-options { grid-template-columns: 1fr; }
   .giving-options article { padding: 24px; }
   .visit-hero-actions { gap: 10px; }
