@@ -97,6 +97,138 @@ function setupMotion() {
 motionPreference.addEventListener("change", setupMotion);
 setupMotion();
 
+const hero = document.querySelector(".hero");
+const heroImages = hero ? Array.from(hero.querySelectorAll(".hero-image")) : [];
+const heroSlideButtons = hero ? Array.from(hero.querySelectorAll(".hero-slide-button")) : [];
+const heroCarouselToggle = hero?.querySelector(".hero-carousel-toggle");
+
+if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.length && heroCarouselToggle instanceof HTMLButtonElement) {
+  let activeHeroSlide = 0;
+  let heroTimer;
+  let heroPaused = motionPreference.matches;
+
+  function showHeroSlide(index) {
+    activeHeroSlide = (index + heroImages.length) % heroImages.length;
+    heroImages.forEach((image, imageIndex) => {
+      const active = imageIndex === activeHeroSlide;
+      image.classList.toggle("is-active", active);
+      image.setAttribute("aria-hidden", String(!active));
+    });
+    heroSlideButtons.forEach((button, buttonIndex) => {
+      button.setAttribute("aria-pressed", String(buttonIndex === activeHeroSlide));
+    });
+  }
+
+  function stopHeroTimer() {
+    window.clearInterval(heroTimer);
+    heroTimer = undefined;
+  }
+
+  function startHeroTimer() {
+    stopHeroTimer();
+    const heroIsInteracting = hero.matches(":hover") || hero.contains(document.activeElement);
+    if (!heroPaused && !heroIsInteracting && !document.hidden && !motionPreference.matches) {
+      heroTimer = window.setInterval(() => showHeroSlide(activeHeroSlide + 1), 6000);
+    }
+  }
+
+  heroSlideButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      showHeroSlide(index);
+      startHeroTimer();
+    });
+  });
+  heroCarouselToggle.addEventListener("click", () => {
+    heroPaused = !heroPaused;
+    heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
+    heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
+    startHeroTimer();
+  });
+  hero.addEventListener("pointerenter", stopHeroTimer);
+  hero.addEventListener("pointerleave", startHeroTimer);
+  hero.addEventListener("focusin", stopHeroTimer);
+  hero.addEventListener("focusout", (event) => {
+    if (!(event.relatedTarget instanceof Node) || !hero.contains(event.relatedTarget)) startHeroTimer();
+  });
+  document.addEventListener("visibilitychange", startHeroTimer);
+  motionPreference.addEventListener("change", () => {
+    heroPaused = motionPreference.matches;
+    heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
+    heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
+    startHeroTimer();
+  });
+  showHeroSlide(0);
+  heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
+  heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
+  startHeroTimer();
+}
+
+const galleryGrid = document.querySelector(".gallery-grid");
+const galleryScrollToggle = document.querySelector(".gallery-scroll-toggle");
+
+if (galleryGrid && galleryScrollToggle instanceof HTMLButtonElement) {
+  let galleryTimer;
+  let galleryPaused = motionPreference.matches;
+  let galleryInView = false;
+
+  function stopGalleryTimer() {
+    window.clearInterval(galleryTimer);
+    galleryTimer = undefined;
+  }
+
+  function scrollGallery(direction = 1) {
+    const firstItem = galleryGrid.querySelector("a");
+    if (!firstItem) return;
+    const styles = getComputedStyle(galleryGrid);
+    const gap = Number.parseFloat(styles.columnGap) || 0;
+    const step = firstItem.getBoundingClientRect().width + gap;
+    const maxScroll = galleryGrid.scrollWidth - galleryGrid.clientWidth;
+    const nextPosition = galleryGrid.scrollLeft + step * direction;
+    galleryGrid.scrollTo({
+      left: direction > 0 && nextPosition >= maxScroll - 2 ? 0 : Math.max(0, nextPosition),
+      behavior: motionPreference.matches ? "auto" : "smooth"
+    });
+  }
+
+  function startGalleryTimer() {
+    stopGalleryTimer();
+    const galleryIsInteracting = galleryGrid.matches(":hover") || galleryGrid.contains(document.activeElement);
+    if (!galleryPaused && !galleryIsInteracting && galleryInView && !document.hidden && !motionPreference.matches) {
+      galleryTimer = window.setInterval(() => scrollGallery(), 4200);
+    }
+  }
+
+  galleryScrollToggle.addEventListener("click", () => {
+    galleryPaused = !galleryPaused;
+    galleryScrollToggle.textContent = galleryPaused ? "Resume scrolling" : "Pause scrolling";
+    galleryScrollToggle.setAttribute("aria-label", galleryPaused ? "Resume gallery scrolling" : "Pause gallery scrolling");
+    startGalleryTimer();
+  });
+  galleryGrid.addEventListener("pointerenter", stopGalleryTimer);
+  galleryGrid.addEventListener("pointerleave", startGalleryTimer);
+  galleryGrid.addEventListener("focusin", stopGalleryTimer);
+  galleryGrid.addEventListener("focusout", (event) => {
+    if (!(event.relatedTarget instanceof Node) || !galleryGrid.contains(event.relatedTarget)) startGalleryTimer();
+  });
+  document.addEventListener("visibilitychange", startGalleryTimer);
+  motionPreference.addEventListener("change", () => {
+    galleryPaused = motionPreference.matches;
+    galleryScrollToggle.textContent = galleryPaused ? "Resume scrolling" : "Pause scrolling";
+    galleryScrollToggle.setAttribute("aria-label", galleryPaused ? "Resume gallery scrolling" : "Pause gallery scrolling");
+    startGalleryTimer();
+  });
+  if ("IntersectionObserver" in window) {
+    const galleryObserver = new IntersectionObserver(([entry]) => {
+      galleryInView = entry.isIntersecting;
+      startGalleryTimer();
+    });
+    galleryObserver.observe(galleryGrid);
+  } else {
+    galleryInView = true;
+    startGalleryTimer();
+  }
+}
+
 const galleryViewer = document.querySelector(".gallery-viewer");
 const galleryLinks = Array.from(document.querySelectorAll(".gallery-grid a"));
 
