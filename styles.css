@@ -633,7 +633,7 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 .ministries-inner { padding-top: 95px; padding-bottom: 90px; }
 .ministries-heading > p { color: #555; }
 .ministries-heading h2 em { color: var(--clay); }
-.ministry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; border: 0; }
+.ministry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; border: 0; }
 .ministry-card, .ministry-card + .ministry-card { min-height: 285px; padding: 22px; border: 0; background: var(--white); }
 .card-number { color: #777; }
 .card-symbol { color: var(--clay); }
@@ -909,14 +909,18 @@ h1 em, h2 em { color: var(--lime); font-style: normal; font-weight: 700; }
 .ministries-section .eyebrow { color: var(--green); }
 .ministries-section .ministries-heading h2 em { color: var(--green); }
 .ministry-grid { gap: 16px; }
+.ministry-card h3 { font-size: 20px; }
 .ministry-card, .ministry-card + .ministry-card { min-height: 235px; border-radius: 14px; }
 .ministry-card p { font-size: 13px; line-height: 1.6; }
-.ministry-card h3 { font-size: 20px; }
 .contact-options strong, .visit-details > div { font-size: 13px; }
 .footer-pages a, .footer-socials a, .footer-main > p { font-size: 12px; }
 .footer-bottom { font-size: 11px; }
 .story-card-copy > p:not(.story-date), .history-details p, .article-body p { font-size: 14px; }
 .section-heading-row > p, .story-copy > p:not(.eyebrow), .page-hero-content > p:not(.eyebrow) { font-size: 15px; }
+
+@media (max-width: 1100px) {
+  .ministry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 @media (max-width: 900px) {
   .navigation { max-height: calc(100svh - 72px); overflow-y: auto; }
