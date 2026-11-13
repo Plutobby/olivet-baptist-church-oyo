@@ -310,6 +310,18 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
 .story-photo img { position: relative; width: 100%; aspect-ratio: 4 / 4.7; object-fit: cover; }
 .story-photo-caption { position: absolute; right: 0; bottom: 0; padding: 10px 15px; background: var(--clay); color: white; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 
+.anthem-section { padding-top: 85px; padding-bottom: 90px; background: var(--lime); color: var(--green-deep); }
+.anthem-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+.anthem-section .eyebrow { justify-content: center; color: var(--green); }
+.anthem-section h2 { margin-bottom: 10px; font-size: clamp(36px, 5vw, 56px); text-transform: capitalize; }
+.anthem-author { margin-bottom: 34px; color: #614a50; font-size: 14px; }
+.anthem-lyrics { display: grid; gap: 25px; justify-items: center; font-size: clamp(15px, 2vw, 18px); line-height: 1.8; }
+.anthem-verse, .anthem-chorus p { margin: 0; }
+.anthem-verse strong, .anthem-chorus > strong { color: var(--green); }
+.anthem-chorus { width: min(100%, 700px); padding: 22px 24px; border-top: 1px solid rgba(44,16,29,.22); border-bottom: 1px solid rgba(44,16,29,.22); }
+.anthem-chorus > strong { display: block; margin-bottom: 8px; }
+.anthem-repeat { color: var(--green); font-weight: 700; }
+
 .belief-band, .visit-contact-band { background: var(--green-deep); color: white; }
 .belief-inner { padding-top: 80px; padding-bottom: 83px; }
 .belief-inner h2 { margin-bottom: 20px; }
