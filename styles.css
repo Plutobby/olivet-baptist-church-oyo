@@ -386,13 +386,8 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
 .viewer-fallback a { text-decoration: underline; }
 
 .gallery-section { padding-bottom: 65px; }
-.gallery-controls { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-.gallery-scroll-toggle { min-height: 40px; padding: 0 13px; border: 1px solid rgba(67,23,41,.35); border-radius: 999px; background: transparent; color: var(--green-deep); font: inherit; font-size: 12px; cursor: pointer; }
-.gallery-scroll-toggle:hover { background: var(--green); color: white; }
-.gallery-scroll-toggle:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
-.gallery-scroll-status { color: #667068; font-size: 12px; }
-.gallery-grid { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 14px; scroll-snap-type: x mandatory; scrollbar-color: var(--clay) var(--paper-deep); }
-.gallery-grid a { display: block; flex: 0 0 calc((100% - 36px) / 4); overflow: hidden; background: var(--paper-deep); scroll-snap-align: start; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.gallery-grid a { display: block; overflow: hidden; background: var(--paper-deep); }
 .gallery-grid img { width: 100%; height: 100%; min-height: 175px; aspect-ratio: 1.08 / 1; object-fit: cover; transition: transform .35s ease; }
 .gallery-grid a:hover img { transform: scale(1.05); }
 .video-section { padding-top: 50px; }
@@ -456,7 +451,7 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
   .gather-panel { padding-right: 9%; padding-left: 9%; }
   .visit-content { padding-right: 9%; padding-left: 15%; }
   .about { gap: 7%; }
-  .gallery-grid a { flex-basis: calc((100% - 24px) / 3); }
+  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-main { grid-template-columns: 1fr 1fr; }
   .footer-socials { grid-column: 1 / -1; justify-content: flex-start; padding-top: 0; }
@@ -543,9 +538,8 @@ h1 em, h2 em { color: var(--lime); font-weight: 500; }
   .giving-grid { grid-template-columns: 1fr; gap: 16px; }
   .treasure-viewer { padding-bottom: 65px; }
   .treasure-viewer iframe { height: 70vh; min-height: 420px; }
-  .gallery-grid a { flex-basis: 78%; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .gallery-grid img { min-height: 130px; }
-  .gallery-controls { align-items: flex-start; flex-direction: column; gap: 8px; }
   .video-section { padding-top: 30px; }
   .video-grid { grid-template-columns: 1fr; gap: 18px; }
   .visit-welcome, .other-gatherings { padding-top: 68px; padding-bottom: 70px; }
