@@ -100,12 +100,11 @@ setupMotion();
 const hero = document.querySelector(".hero");
 const heroImages = hero ? Array.from(hero.querySelectorAll(".hero-image")) : [];
 const heroSlideButtons = hero ? Array.from(hero.querySelectorAll(".hero-slide-button")) : [];
-const heroCarouselToggle = hero?.querySelector(".hero-carousel-toggle");
 
-if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.length && heroCarouselToggle instanceof HTMLButtonElement) {
+if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.length) {
   let activeHeroSlide = 0;
   let heroTimer;
-  let heroPaused = motionPreference.matches;
+  const heroMotionEnabled = !motionPreference.matches;
 
   function showHeroSlide(index) {
     activeHeroSlide = (index + heroImages.length) % heroImages.length;
@@ -127,7 +126,7 @@ if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.leng
   function startHeroTimer() {
     stopHeroTimer();
     const heroIsInteracting = hero.matches(":hover") || hero.contains(document.activeElement);
-    if (!heroPaused && !heroIsInteracting && !document.hidden && !motionPreference.matches) {
+    if (heroMotionEnabled && !heroIsInteracting && !document.hidden) {
       heroTimer = window.setInterval(() => showHeroSlide(activeHeroSlide + 1), 6000);
     }
   }
@@ -138,12 +137,6 @@ if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.leng
       startHeroTimer();
     });
   });
-  heroCarouselToggle.addEventListener("click", () => {
-    heroPaused = !heroPaused;
-    heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
-    heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
-    startHeroTimer();
-  });
   hero.addEventListener("pointerenter", stopHeroTimer);
   hero.addEventListener("pointerleave", startHeroTimer);
   hero.addEventListener("focusin", stopHeroTimer);
@@ -151,15 +144,7 @@ if (hero && heroImages.length > 1 && heroSlideButtons.length === heroImages.leng
     if (!(event.relatedTarget instanceof Node) || !hero.contains(event.relatedTarget)) startHeroTimer();
   });
   document.addEventListener("visibilitychange", startHeroTimer);
-  motionPreference.addEventListener("change", () => {
-    heroPaused = motionPreference.matches;
-    heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
-    heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
-    startHeroTimer();
-  });
   showHeroSlide(0);
-  heroCarouselToggle.textContent = heroPaused ? "Play" : "Pause";
-  heroCarouselToggle.setAttribute("aria-label", heroPaused ? "Resume photo rotation" : "Pause photo rotation");
   startHeroTimer();
 }
 
